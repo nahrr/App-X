@@ -1,0 +1,22 @@
+{
+    "bookinglist": [
+        {
+            "id": 1,
+            "info": [{
+                "firstname": "Test",
+                "lastname": "Testsson",
+                "email": "Test@Test.com",
+                "date": "2020-01-01"
+            }]
+        },
+        {
+            "id": 2,
+            "info": [{
+                "firstname": "Test2",
+                "lastname": "Testsson2",
+                "email": "Test2@Test.com",
+                "date": "2020-02-02"
+            }]
+        }
+    ]
+}
