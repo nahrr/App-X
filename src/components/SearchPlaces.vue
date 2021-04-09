@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="search_panel">
-    <label>Search booking:</label>
-    <input type="text" v-model="search" placeholder="Search Bookings.." />
+    <label>Search places:</label>
+    <input type="text" v-model="search" placeholder="Filter..." />
       
     </div>
     <div class="wrapper">
@@ -22,9 +22,9 @@
 </template>
 
 <script>
-//import states from "../assets/bookinglist.json";
+//import states from "../assets/places.json";
 export default {
-  name: "SearchBookings",
+  name: "Places",
   props: {
     booking: {
       type: Object,
@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     bar: function () {
-      this.$root.$refs.ShowBookings.showBookings();
+      this.$root.$refs.Places.showPlaces();
     },
   },
 

@@ -1,16 +1,16 @@
 <template>
   <div id="app">
    
-    <ShowBookings />
+    <Places />
   </div>
 </template>
 
 <script>
 //import Count from "@/components/Count";
-import ShowBookings from "./components/ShowBookings.vue";
+import Places from "./components/Places.vue";
 export default {
   name: "app",
-  components: { ShowBookings },
+  components: { Places },
 };
 </script>
 <style scoped>
