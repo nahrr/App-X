@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div class="search_panel">
-    <label>Search places:</label>
-    <input type="text" v-model="search" placeholder="Filter..." />
+
       
     </div>
     <div class="wrapper">
@@ -18,7 +16,7 @@
      </div> -->
     <!-- </div> -->
     </div>
-  </div>
+
 </template>
 
 <script>
