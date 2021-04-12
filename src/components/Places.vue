@@ -1,9 +1,8 @@
 <template>
   <div>
     <h1>Places</h1>
-    <SearchPlaces/>
     <div class="show_Places_panel">
-      <button v-on:click="isHidden = false">Get Places</button>
+      <button v-on:click="isHidden = false" v-if="isHidden">Get Places</button>
       <div class="show_Places" v-if="!isHidden">
         <div class="search_panel">
           <label>Search places:</label>
@@ -11,7 +10,7 @@
         </div>
         <div
           v-for="placesData in placesList"
-          :key="placesData.location"
+          :key="placesData.id"
           class="place_data"
         >
           <div class="places">
@@ -21,6 +20,9 @@
             <div>
               {{ placesData.location }}
             </div>
+            <div class="card">
+              <img v-bind:src="placesData.image" />
+            </div>
           </div>
         </div>
       </div>
@@ -29,11 +31,10 @@
 </template>
 
 <script>
-import SearchPlaces from "./SearchPlaces.vue";
 import states from "../assets/places.json";
 export default {
   name: "Places",
-  components: { SearchPlaces },
+  components: {},
   data() {
     return {
       isHidden: true,
@@ -43,12 +44,17 @@ export default {
   computed: {
     placesList() {
       var tempPlaces = states;
-
+      //Not rly sure about this to be honest
       if (this.searchValue != "" && this.searchValue) {
         tempPlaces = tempPlaces.filter((item) => {
-          return item.location
-            .toUpperCase()
-            .includes(this.searchValue.toUpperCase());
+          return (
+            item.location
+              .toUpperCase()
+              .includes(this.searchValue.toUpperCase()) ||
+            item.country
+              .toUpperCase()
+              .startsWith(this.searchValue.toUpperCase())
+          );
         });
       }
       return tempPlaces;
@@ -58,6 +64,52 @@ export default {
 </script>
 
 <style scoped>
+button {
+  padding: 1rem;
+  background-color: #dddddd;
+  color: rgb(218, 218, 218);
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #2c3e50;
+}
+
+button:hover {
+  background-color: rgb(204, 248, 175);
+}
+
+img {
+  width: 10rem;
+  height: auto;
+  border-radius: 0.1rem;
+  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.5);
+}
+
+input:hover {
+  background-color: rgb(204, 248, 175);
+}
+
+input:focus {
+  background-color: rgb(204, 248, 175);
+}
+
+label {
+  font-weight: bold;
+  margin-right: 1rem;
+}
+.place_data:nth-child(odd) {
+  background-color: rgb(245, 239, 239);
+}
+
+.places {
+  flex-grow: 8;
+  text-align: left;
+  padding-left: 1rem;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
 .place_data {
   display: flex;
   align-items: center;
@@ -68,25 +120,6 @@ export default {
   max-width: 55rem;
 }
 
-.places {
-  flex-grow: 8;
-  text-align: left;
-  padding-left: 1rem;
-  display: flex;
-  justify-content: space-between;
-}
-button {
-  padding: 1rem;
-  background-color: #4CAF50;
-  color: white;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-button:hover{
-  background-color: #3ff15c;  /* Green */
-  color: white;
-}
 .search_panel {
   display: flex;
   align-items: center;
@@ -95,15 +128,5 @@ button:hover{
   border-bottom: 2px solid #ccc;
   padding: 1rem;
   max-width: 55rem;
-}
-label{
-  font-weight: bold;
-  margin-right: 1rem;
-}
-input:focus {
-  background-color: rgb(204, 248, 175);
-}
-input:hover{
-    background-color: rgb(204, 248, 175);
 }
 </style>

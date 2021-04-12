@@ -6,7 +6,6 @@
 </template>
 
 <script>
-//import Count from "@/components/Count";
 import Places from "./components/Places.vue";
 export default {
   name: "app",
