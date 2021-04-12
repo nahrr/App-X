@@ -80,7 +80,8 @@ button:hover {
 
 img {
   width: 10rem;
-  height: auto;
+  height: 5rem;
+  object-fit: cover;
   border-radius: 0.1rem;
   box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.5);
 }
