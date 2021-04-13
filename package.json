@@ -17,8 +17,11 @@
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.0",
     "babel-eslint": "^10.1.0",
+    "electron-fetch": "^1.7.3",
     "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0"
+    "eslint-plugin-vue": "^7.0.0",
+    "fs-extra": "^9.1.0",
+    "path": "^0.12.7"
   },
   "eslintConfig": {
     "root": true,
