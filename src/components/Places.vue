@@ -9,6 +9,32 @@
             Search places:
             <input type="text" v-model="searchValue" placeholder="Filter..." />
           </label>
+          <div class="search--panel--btn__container">
+            <button
+              class="search--panel--btn"
+              v-on:click="sizeOfList = 'showAll'"
+            >
+              Show 1000
+            </button>
+            <button
+              class="search--panel--btn"
+              v-on:click="sizeOfList = 'showHalf'"
+            >
+              Show 500
+            </button>
+            <button
+              class="search--panel--btn"
+              v-on:click="sizeOfList = 'showTenth'"
+            >
+              Show 100
+            </button>
+            <button
+              class="search--panel--btn"
+              v-on:click="sizeOfList = 'hundredth'"
+            >
+              Show 10
+            </button>
+          </div>
         </div>
         <div
           v-for="placesData in placesList"
@@ -22,6 +48,9 @@
             <div>
               {{ placesData.location }}
             </div>
+            <div>
+              {{ placesData.id }}
+            </div>
             <div class="card">
               <img v-bind:src="placesData.image" />
             </div>
@@ -33,7 +62,8 @@
 </template>
 
 <script>
-import states from "../assets/placesSmall.json";
+import states from "../assets/places.json";
+
 export default {
   name: "Places",
   components: {},
@@ -41,12 +71,23 @@ export default {
     return {
       isHidden: true,
       searchValue: "",
+      sizeOfList: "",
     };
   },
   computed: {
-    
     placesList() {
       var tempPlaces = states;
+      console.log(this.sizeOfList);
+
+      if (this.sizeOfList === "hundredth") {
+        tempPlaces = states.slice(0, 10);
+      } else if (this.sizeOfList === "showTenth") {
+        tempPlaces = states.slice(0, 100);
+      } else if (this.sizeOfList === "showHalf") {
+        tempPlaces = states.slice(0, 500);
+      } else {
+        tempPlaces = states.slice(0, 1000);
+      }
       //Not rly sure about this to be honest
       if (this.searchValue != "" && this.searchValue) {
         tempPlaces = tempPlaces.filter((item) => {
@@ -132,5 +173,9 @@ label {
   border-bottom: 2px solid #ccc;
   padding: 1rem;
   max-width: 55rem;
+  justify-content: space-between;
+}
+.search--panel--btn {
+  margin-left: 0.5rem;
 }
 </style>
