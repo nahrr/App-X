@@ -1,12 +1,14 @@
 <template>
   <div>
     <h1>Places</h1>
-    <div class="show_Places_panel">
+    <div class="show_places_panel">
       <button v-on:click="isHidden = false" v-if="isHidden">Get Places</button>
-      <div class="show_Places" v-if="!isHidden">
+      <div class="show_places" v-if="!isHidden">
         <div class="search_panel">
-          <label>Search places:</label>
-          <input type="text" v-model="searchValue" placeholder="Filter..." />
+          <label>
+            Search places:
+            <input type="text" v-model="searchValue" placeholder="Filter..." />
+          </label>
         </div>
         <div
           v-for="placesData in placesList"
@@ -31,7 +33,7 @@
 </template>
 
 <script>
-import states from "../assets/places.json";
+import states from "../assets/placesSmall.json";
 export default {
   name: "Places",
   components: {},
@@ -42,6 +44,7 @@ export default {
     };
   },
   computed: {
+    
     placesList() {
       var tempPlaces = states;
       //Not rly sure about this to be honest

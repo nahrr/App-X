@@ -1,13 +1,13 @@
 const fs = require('fs-extra');
 const path = require('path');
 
-const placesJson = path.resolve(__dirname, '../src/assets/places.json');
+const placesJson = path.resolve(__dirname, '../src/assets/placesMid.json');
 
 async function updateJsonFile() {
   const jsonArray = [];
 
 
-  for (let i = 0; i < 1000; i++) {
+  for (let i = 0; i < 50; i++) {
     if (i === 0 || (i - 11) % 11 === 0) {
       jsonArray.push({
         id: i,
@@ -87,7 +87,7 @@ async function updateJsonFile() {
         id: i,
         location: "Auckland",
         image: "./images/Auckland.jpg",
-        country: "UK"
+        country: "NZ"
       })
     }
 
