@@ -29,7 +29,7 @@
               Show 100
             </button>
             <button
-              v-on:click="sizeOfList = 'hundredth'"
+              v-on:click="sizeOfList = 'showHundredth'"
               class="search--panel--btn"
             >
               Show 10
@@ -76,7 +76,7 @@ export default {
       var tempPlaces = states;
       console.log(this.sizeOfList);
 
-      if (this.sizeOfList === "hundredth") {
+      if (this.sizeOfList === "showHundredth") {
         tempPlaces = states.slice(0, 10);
       } else if (this.sizeOfList === "showTenth") {
         tempPlaces = states.slice(0, 100);
@@ -173,6 +173,16 @@ label {
   justify-content: space-between;
 }
 .search--panel--btn {
-  margin-left: 8px;
+  margin: 0;
+  max-height: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.search--panel--btn__container {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  column-gap: 8px;
 }
 </style>
