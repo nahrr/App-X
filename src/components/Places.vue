@@ -72,33 +72,31 @@ export default {
     };
   },
   computed: {
+    placesSize() {
+      let size = 10000;
+      switch (this.sizeOfList) {
+        case "showHundredth":
+          size = 10;
+          break;
+        case "showTenth":
+          size = 100;
+          break;
+        case "showHalf":
+          size = 500;
+      }
+      return states.slice(0, size);
+    },
+    // condition ? exprIfTrue : exprIfFalse
     placesList() {
-      var tempPlaces = states;
-      console.log(this.sizeOfList);
-
-      if (this.sizeOfList === "showHundredth") {
-        tempPlaces = states.slice(0, 10);
-      } else if (this.sizeOfList === "showTenth") {
-        tempPlaces = states.slice(0, 100);
-      } else if (this.sizeOfList === "showHalf") {
-        tempPlaces = states.slice(0, 500);
-      } else {
-        tempPlaces = states.slice(0, 10000);
-      }
-      //Not rly sure about this to be honest
-      if (this.searchValue != "" && this.searchValue) {
-        tempPlaces = tempPlaces.filter((item) => {
-          return (
-            item.location
-              .toUpperCase()
-              .includes(this.searchValue.toUpperCase()) ||
-            item.country
-              .toUpperCase()
-              .startsWith(this.searchValue.toUpperCase())
-          );
-        });
-      }
-      return tempPlaces;
+      return !this.searchValue
+        ? this.placesSize
+        : this.placesSize.filter((item) => {
+            const value = this.searchValue.toUpperCase();
+            return (
+              item.location.toUpperCase().includes(value) ||
+              item.country.toUpperCase().startsWith(value)
+            );
+          });
     },
   },
 };
