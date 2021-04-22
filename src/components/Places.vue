@@ -1,9 +1,18 @@
 <template>
   <div>
-    <h1>Places</h1>
+    <h1>Places - App X</h1>
     <div class="show_places_panel">
-      <button v-on:click="isHidden = false" v-if="isHidden">Get Places</button>
+      <button
+        class="main__button"
+        v-on:click="isHidden = false"
+        v-if="isHidden"
+      >
+        Get Places
+      </button>
       <div class="show_places" v-if="!isHidden">
+        <div>
+          <strong>{{ placesCount }} posts have been loaded </strong>
+        </div>
         <div class="search_panel">
           <label>
             Search places:
@@ -14,7 +23,7 @@
               v-on:click="sizeOfList = 'showAll'"
               class="search--panel--btn"
             >
-              Show 1000
+              Show 10000
             </button>
             <button
               v-on:click="sizeOfList = 'showHalf'"
@@ -36,6 +45,7 @@
             </button>
           </div>
         </div>
+
         <div
           v-for="placesData in placesList"
           :key="placesData.id"
@@ -49,7 +59,7 @@
               {{ placesData.location }}
             </div>
             <div class="card">
-              <img v-bind:src="placesData.image" />
+              <img v-bind:src="placesData.image" alt="city" />
             </div>
           </div>
         </div>
@@ -86,6 +96,10 @@ export default {
       }
       return states.slice(0, size);
     },
+
+    placesCount() {
+      return this.placesList.length;
+    },
     // condition ? exprIfTrue : exprIfFalse
     placesList() {
       return !this.searchValue
@@ -117,6 +131,12 @@ button:hover {
   background-color: rgb(204, 248, 175);
 }
 
+.main__button:active {
+  transition: all 0.25s ease;
+  width: 10rem;
+  opacity: 0.2;
+}
+
 img {
   width: 10rem;
   height: 5rem;
@@ -137,6 +157,7 @@ label {
   font-weight: bold;
   margin-right: 1rem;
 }
+
 .place_data:nth-child(odd) {
   background-color: rgb(245, 239, 239);
 }
@@ -170,6 +191,7 @@ label {
   max-width: 55rem;
   justify-content: space-between;
 }
+
 .search--panel--btn {
   margin: 0;
   max-height: 1rem;
